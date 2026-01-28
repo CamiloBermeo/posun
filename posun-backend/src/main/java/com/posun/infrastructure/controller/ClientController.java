@@ -1,6 +1,7 @@
 package com.posun.infrastructure.controller;
 
 import com.posun.application.dto.BookingRequestDTO;
+import com.posun.application.dto.BookingResponseDTO;
 import com.posun.domain.useCase.ICreateBookingUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,9 @@ public class ClientController {
 
     //agendar cita
     @PutMapping("/booking")
-    public ResponseEntity createBooking(@RequestBody BookingRequestDTO bookingRequestDTO){
-            clientService.execute(bookingRequestDTO);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<BookingResponseDTO> createBooking(@RequestBody BookingRequestDTO bookingRequestDTO){
+            BookingResponseDTO createBooingResponse = clientService.execute(bookingRequestDTO);
+        return ResponseEntity.ok(createBooingResponse);
     }
 
 }

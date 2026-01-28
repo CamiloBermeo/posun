@@ -10,17 +10,21 @@ public class ServiceType {
     private NameServiceVO nameService;
     private DescriptionServiceVO descriptionService;
     private PriceVO price;
+    private Integer durationMinutes;
+    private boolean active;
 
     public ServiceType() {
     }
 
     public ServiceType(Long serviceTypeId, Long tenantId, NameServiceVO nameService, DescriptionServiceVO descriptionService,
-                       PriceVO price) {
+                       PriceVO price, Integer durationMinutes, boolean active) {
         this.serviceTypeId = serviceTypeId;
         this.tenantId = tenantId;
         this.nameService = nameService;
         this.descriptionService = descriptionService;
         this.price = price;
+        this.durationMinutes = durationMinutes;
+        this.active = active;
     }
 
     private ServiceType(ServiceTypeBuilder builder) {
@@ -29,6 +33,8 @@ public class ServiceType {
         this.nameService = builder.nameService;
         this.descriptionService = builder.descriptionService;
         this.price = builder.price;
+        this.durationMinutes = builder.durationMinutes;
+        this.active = builder.active;
 
     }
 
@@ -38,7 +44,9 @@ public class ServiceType {
                 .withTenantId(this.tenantId)
                 .withNameService(this.nameService)
                 .withDescriptionService(this.descriptionService)
-                .withPrice(this.price);
+                .withPrice(this.price)
+                .withDurationMinutes(this.durationMinutes)
+                .withActive(this.active);
 
     }
 
@@ -52,6 +60,8 @@ public class ServiceType {
         private NameServiceVO nameService;
         private DescriptionServiceVO descriptionService;
         private PriceVO price;
+        private Integer durationMinutes;
+        private boolean active;
 
 
         public ServiceTypeBuilder withServiceTypeId(Long serviceTypeId) {
@@ -79,6 +89,14 @@ public class ServiceType {
             return this;
         }
 
+        public ServiceTypeBuilder withDurationMinutes(Integer durationMinutes) {
+            this.durationMinutes= durationMinutes;
+            return this;
+        }
+        public ServiceTypeBuilder withActive(boolean active) {
+            this.active = active;
+            return this;
+        }
 
         public ServiceType build() {
             return new ServiceType(this);
@@ -105,4 +123,11 @@ public class ServiceType {
         return tenantId;
     }
 
+    public Integer getDurationMinutes() {
+        return durationMinutes;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
 }

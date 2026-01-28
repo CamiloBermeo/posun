@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: posun-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/posun_db
+    username: postgres
+    password: Chitiva_09
+    driver-class-name: org.postgresql.Driver
+    # Configuración de Hikari (Pool de conexiones)
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+
+  jpa:
+    open-in-view: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true # Útil si ya tienes tablas creadas
+    locations: classpath:db/migration
+
+logging:
+  level:
+     # Muestra SQL generado por Hibernate
+    org.hibernate.SQL: DEBUG
+
+    # Muestra valores de parámetros en las queries
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

@@ -1,3 +1,6 @@
 spring:
-  application:
-    name: posun-backend
+  profiles:
+    active: dev
+
+    application:
+        name: posun-backend

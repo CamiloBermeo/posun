@@ -1,7 +1,8 @@
 package com.posun.domain.useCase;
 
 import com.posun.application.dto.BookingRequestDTO;
+import com.posun.application.dto.BookingResponseDTO;
 
 public interface ICreateBookingUseCase {
-     void execute(BookingRequestDTO bookingRequestDTO);
+     BookingResponseDTO execute(BookingRequestDTO bookingRequestDTO);
 }

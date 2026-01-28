@@ -8,7 +8,7 @@ public class Booking {
     private Long bookingId;
     private Long tenantId;
     private UserClient userClient;
-    private TypeServiceVO typeService;
+    private ServiceType typeService;
     private Employee electedEmployee;
     private LocalDate startBooking;
     private LocalDate endBooking;
@@ -17,7 +17,7 @@ public class Booking {
 
     public Booking(){}
 
-    public Booking(Long bookingId,Long tenantId,UserClient userClient, TypeServiceVO typeService,
+    public Booking(Long bookingId,Long tenantId,UserClient userClient, ServiceType typeService,
                    Employee electedEmployee, LocalDate startBooking, LocalDate endBooking, BookingState bookingState) {
         this.bookingId = bookingId;
         this.tenantId = tenantId;
@@ -60,7 +60,7 @@ public class Booking {
         private Long bookingId;
         private Long tenantId;
         private UserClient userClient;
-        private TypeServiceVO typeService;
+        private ServiceType typeService;
         private Employee electedEmployee;
         private LocalDate startBooking;
         private LocalDate endBooking;
@@ -79,7 +79,7 @@ public class Booking {
             this.userClient = userClient;
             return this;
         }
-        public BookingBuilder withTypeService(TypeServiceVO typeService){
+        public BookingBuilder withTypeService(ServiceType typeService){
             this.typeService = typeService;
             return this;
         }
@@ -112,7 +112,7 @@ public class Booking {
         return userClient;
     }
 
-    public TypeServiceVO getTypeService() {
+    public ServiceType getTypeService() {
         return typeService;
     }
 
