@@ -1,7 +1,6 @@
-package com.posun.application.dto;
+package com.posun.application.dto.booking;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public record BookingRequestDTO(
         String name,

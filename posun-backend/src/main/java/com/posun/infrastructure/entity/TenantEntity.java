@@ -4,6 +4,8 @@ import com.posun.domain.model.TenantConfig;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "tenants")
@@ -24,6 +26,8 @@ public class TenantEntity {
     private String assignedURL;
     @Column(nullable = false)
     private boolean status;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
     @OneToOne(mappedBy = "tenant", cascade = CascadeType.ALL)
     private TenantConfigEntity tenantConfig;
 

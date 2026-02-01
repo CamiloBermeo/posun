@@ -1,9 +1,9 @@
-package com.posun.application.useCase.BookingUseCase;
+package com.posun.application.useCase.Booking;
 
-import com.posun.application.dto.BookingRequestDTO;
-import com.posun.application.dto.BookingResponseDTO;
+import com.posun.application.dto.booking.BookingRequestDTO;
+import com.posun.application.dto.booking.BookingResponseDTO;
 import com.posun.domain.repository.IBookingRepository;
-import com.posun.domain.useCase.ICreateBookingUseCase;
+import com.posun.domain.useCase.booking.ICreateBookingUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -4,22 +4,27 @@ import com.posun.domain.valueObject.Tenant.BusinessNameVO;
 import com.posun.domain.valueObject.Tenant.AssignedURLVO;
 import com.posun.domain.valueObject.Tenant.StatusVO;
 
+import java.time.LocalDateTime;
+
 public class Tenant {
     private Long tenantId;
     private BusinessNameVO businessName;
     private AssignedURLVO AssignedURL;
     private StatusVO status;
+    private LocalDateTime createdAt;
     private TenantConfig tenantConfig;
 
     public Tenant() {
     }
 
-    public Tenant(Long tenantId, BusinessNameVO businessName, AssignedURLVO assignedURL, StatusVO status, TenantConfig tenantConfig) {
+    public Tenant(Long tenantId, BusinessNameVO businessName, AssignedURLVO assignedURL, StatusVO status, LocalDateTime createdAt, TenantConfig tenantConfig) {
         this.tenantId = tenantId;
         this.businessName = businessName;
         this.AssignedURL = assignedURL;
         this.status = status;
+        this.createdAt = LocalDateTime.now();//asigna la hora actual
         this.tenantConfig = tenantConfig;
+
     }
 
     private Tenant(TenantBuilder builder) {
@@ -27,6 +32,7 @@ public class Tenant {
         this.businessName = builder.businessName;
         this.AssignedURL = builder.assignedURL;
         this.status = builder.status;
+        this.createdAt = builder.createdAt;
         this.tenantConfig = builder.tenantConfig;
 
     }
@@ -37,6 +43,7 @@ public class Tenant {
                 .withBusinessName(this.businessName)
                 .withAssignedURL(this.AssignedURL)
                 .withStatus(this.status)
+                .withCreatedAt(LocalDateTime.now())
                 .withTenantConfig(this.tenantConfig);
     }
 
@@ -48,6 +55,7 @@ public class Tenant {
         private Long tenantId;
         private BusinessNameVO businessName;
         private AssignedURLVO assignedURL;
+        private LocalDateTime createdAt;
         private StatusVO status;
         private TenantConfig tenantConfig;
 
@@ -68,6 +76,10 @@ public class Tenant {
 
         public TenantBuilder withStatus(StatusVO status) {
             this.status = status;
+            return this;
+        }
+        public TenantBuilder withCreatedAt(LocalDateTime createdAt) {
+            this.createdAt = createdAt;
             return this;
         }
 
@@ -96,6 +108,9 @@ public class Tenant {
         return status;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
     public TenantConfig getTenantConfig() {
         return tenantConfig;
     }

@@ -5,11 +5,19 @@ import java.util.Objects;
 public final class AssignedURLVO {
     private final String assignedURL;
 
-    public AssignedURLVO(String assignedURL) {
-        if (assignedURL == null || assignedURL.trim().isEmpty()) {
+    public AssignedURLVO(String businessName) {
+        if (businessName == null || businessName.trim().isEmpty()) {
             throw new IllegalArgumentException("la URL asignada no puede estar vacia");
         }
-        this.assignedURL = assignedURL;
+        this.assignedURL = assignedUrl(businessName);
+    }
+
+    //fabrica el slug que despues se unira con la url
+    public static String assignedUrl(String businessName) {
+        return businessName.toLowerCase()
+                .replaceAll(" ", "-")
+                .replaceAll("-+", "-")
+                .replaceAll("^-|-$", "");
     }
 
     public String getAssignedURL() {

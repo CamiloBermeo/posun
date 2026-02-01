@@ -1,4 +1,4 @@
-package com.posun.application.dto;
+package com.posun.application.dto.booking;
 
 public record BookingResponseDTO(
         String name,
