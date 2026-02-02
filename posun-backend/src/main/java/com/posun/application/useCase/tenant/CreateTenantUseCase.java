@@ -17,8 +17,7 @@ public class CreateTenantUseCase implements ICreateTenantUseCase {
 
     @Override
     public CreateTenantResponseDTO execute(CreateTenantRequestDTO createTenantRequestDTO) {
-        TenantConfig tenantConfig = TenantAppMapper.tenantConfigToModel(createTenantRequestDTO);
-        Tenant tenant = TenantAppMapper.toModel(createTenantRequestDTO,tenantConfig);
+        Tenant tenant = TenantAppMapper.toModel(createTenantRequestDTO);
         Tenant tenantRepository = repository.createTenant(tenant);
 
         return TenantAppMapper.toDTO(tenantRepository);
