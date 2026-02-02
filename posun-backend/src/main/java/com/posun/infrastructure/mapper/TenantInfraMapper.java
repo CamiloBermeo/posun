@@ -9,13 +9,14 @@ import com.posun.infrastructure.entity.TenantEntity;
 
 public class TenantInfraMapper {
 
-    public static TenantEntity toEntity(Tenant tenant, TenantConfigEntity tenantConfigEntity) {
+    public static TenantEntity toEntity(Tenant tenant) {
 
         return TenantEntity.builder()
                 .businessName(tenant.getBusinessName().getBusinessName())
                 .createdAt(tenant.getCreatedAt())
+                .status(tenant.getStatus().getStatus())
                 .assignedURL(tenant.getAssignedURL().getAssignedURL())
-                .tenantConfig(tenantConfigEntity)
+                .tenantConfig(tenantConfigToEntity(tenant))
                 .build();
 
     }
@@ -25,6 +26,7 @@ public class TenantInfraMapper {
                 .withTenantId(tenantEntity.getId())
                 .withBusinessName(new BusinessNameVO(tenantEntity.getBusinessName()))
                 .withAssignedURL(new AssignedURLVO(tenantEntity.getAssignedURL()))
+                .withCreatedAt(tenantEntity.getCreatedAt())
                 .withStatus(new StatusVO(tenantEntity.isStatus()))
                 .build().toBuilder();
         return TenantBuilder.build();

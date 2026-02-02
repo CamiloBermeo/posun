@@ -16,8 +16,7 @@ public class TenantRepositoryJpaAdapter implements ITenantRepository {
 
     @Override
     public Tenant createTenant(Tenant tenant) {
-        TenantConfigEntity tenantConfigEntity = TenantInfraMapper.tenantConfigToEntity(tenant);
-        TenantEntity tenantEntity = TenantInfraMapper.toEntity(tenant, tenantConfigEntity);
+        TenantEntity tenantEntity = TenantInfraMapper.toEntity(tenant);
         if (tenantEntity.getTenantConfig() != null) {
             tenantEntity.getTenantConfig().setTenant(tenantEntity); // Vinculamos el hijo con el padre
         }

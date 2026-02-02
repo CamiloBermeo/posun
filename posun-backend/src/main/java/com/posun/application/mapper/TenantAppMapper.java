@@ -6,17 +6,22 @@ import com.posun.domain.model.Tenant;
 import com.posun.domain.model.TenantConfig;
 import com.posun.domain.valueObject.Tenant.AssignedURLVO;
 import com.posun.domain.valueObject.Tenant.BusinessNameVO;
+import com.posun.domain.valueObject.Tenant.StatusVO;
 import com.posun.domain.valueObject.TenantConfig.*;
+
+import java.time.LocalDateTime;
 
 public class TenantAppMapper {
 
-    public static Tenant toModel(CreateTenantRequestDTO dto, TenantConfig tenantConfig) {
+    public static Tenant toModel(CreateTenantRequestDTO dto) {
 
 
         return Tenant.builder()
                 .withBusinessName(new BusinessNameVO(dto.businessName()))
                 .withAssignedURL(new AssignedURLVO(dto.businessName()))
-                .withTenantConfig(tenantConfig)
+                .withCreatedAt(LocalDateTime.now())
+                .withStatus(new StatusVO(true))
+                .withTenantConfig(tenantConfigToModel(dto))
                 .build();
     }
 

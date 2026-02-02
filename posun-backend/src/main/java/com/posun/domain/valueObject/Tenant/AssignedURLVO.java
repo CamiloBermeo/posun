@@ -1,5 +1,6 @@
 package com.posun.domain.valueObject.Tenant;
 
+import java.text.Normalizer;
 import java.util.Objects;
 
 public final class AssignedURLVO {
@@ -14,10 +15,14 @@ public final class AssignedURLVO {
 
     //fabrica el slug que despues se unira con la url
     public static String assignedUrl(String businessName) {
-        return businessName.toLowerCase()
+
+        return  Normalizer.normalize( businessName.toLowerCase() , Normalizer.Form.NFD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
                 .replaceAll(" ", "-")
                 .replaceAll("-+", "-")
-                .replaceAll("^-|-$", "");
+                .replaceAll("^-|-$", "")
+                .replaceAll("ñ","n")
+                .replaceAll("\\s+","-");
     }
 
     public String getAssignedURL() {

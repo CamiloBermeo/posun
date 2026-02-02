@@ -25,7 +25,7 @@ public class TenantEntity {
     @Column(nullable = false, unique = true, length = 50)
     private String assignedURL;
     @Column(nullable = false)
-    private boolean status;
+    private boolean status = true;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @OneToOne(mappedBy = "tenant", cascade = CascadeType.ALL)
