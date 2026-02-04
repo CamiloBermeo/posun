@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.Employee;
 import java.util.Objects;
 
 public final class NameVO {
-    private final String name;
+    private final String value;
 
-    public NameVO(String name) {
-        if (name == null || name.trim().isEmpty()) {
+    public NameVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("el nombre no puede estar vacio");
         }
-        this.name = name;
+        this.value = value;
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class NameVO {
         if (o == null || getClass() != o.getClass())
             return false;
         NameVO nameVO = (NameVO) o;
-        return Objects.equals(name, nameVO.name);
+        return Objects.equals(value, nameVO.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(name);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return name;
+        return value;
     }
 }

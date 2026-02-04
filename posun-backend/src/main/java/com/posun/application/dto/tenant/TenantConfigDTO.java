@@ -5,7 +5,7 @@ public record TenantConfigDTO(
         String logoUrl,
         String faviconUrl,
         String welcomeMessage,
-        boolean allowsCancelation,
-        Integer cancelationMaxHours
+        boolean allowsCancellation,
+        Integer cancellationMaxHours
 ) {
 }

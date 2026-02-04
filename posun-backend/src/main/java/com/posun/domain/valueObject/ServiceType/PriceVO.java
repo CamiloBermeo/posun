@@ -3,20 +3,20 @@ package com.posun.domain.valueObject.ServiceType;
 import java.util.Objects;
 
 public final class PriceVO {
-    private final Double price;
+    private final Double value;
 
-    public PriceVO(Double price) {
-        if (price == null) {
+    public PriceVO(Double value) {
+        if (value == null) {
             throw new IllegalArgumentException("el precio no puede ser nulo");
         }
-        if (price < 0) {
+        if (value < 0) {
             throw new IllegalArgumentException("el precio no puede ser negativo");
         }
-        this.price = price;
+        this.value = value;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getValue() {
+        return value;
     }
 
     @Override
@@ -26,16 +26,16 @@ public final class PriceVO {
         if (o == null || getClass() != o.getClass())
             return false;
         PriceVO priceVO = (PriceVO) o;
-        return Objects.equals(price, priceVO.price);
+        return Objects.equals(value, priceVO.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(price);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return price.toString();
+        return value.toString();
     }
 }

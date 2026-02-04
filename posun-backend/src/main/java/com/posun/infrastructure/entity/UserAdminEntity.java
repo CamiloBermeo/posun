@@ -1,8 +1,8 @@
 package com.posun.infrastructure.entity;
 
-import com.posun.domain.model.TenantConfig;
-import com.posun.domain.valueObject.UserAdmin.PasswordVO;
-import com.posun.domain.valueObject.UserAdmin.PhoneNumberVO;
+
+import com.posun.domain.model.UserPosition;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,10 +20,19 @@ public class UserAdminEntity {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant_id", nullable = false)
-    private TenantEntity tenantId;
-    @Column(nullable = false)
+    private TenantEntity tenant;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
+    private UserPosition userPosition;
+    @Column(name = "phone_number", nullable = false, length = 20)
     private String phoneNumber;
-    @Column(length = 20)
+    @Column(name = "name", nullable = false, length = 100)
+    private String name;
+    @Column(name = "last_name", nullable = false, length = 100)
+    private String lastName;
+    @Column(name = "email", nullable = false, length = 100)
+    private String email;
+    @Column(name = "password_hash", nullable = false, length = 255)
     private String passwordHash;
     @Column(nullable = false)
     private boolean active = true;

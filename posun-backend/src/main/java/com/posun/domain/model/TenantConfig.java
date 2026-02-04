@@ -4,27 +4,27 @@ import com.posun.domain.valueObject.TenantConfig.PrimaryColorVO;
 import com.posun.domain.valueObject.TenantConfig.LogoUrlVO;
 import com.posun.domain.valueObject.TenantConfig.FaviconUrlVO;
 import com.posun.domain.valueObject.TenantConfig.WelcomeMessageVO;
-import com.posun.domain.valueObject.TenantConfig.CancelationMaxHoursVO;
+import com.posun.domain.valueObject.TenantConfig.CancellationMaxHoursVO;
 
 public class TenantConfig {
     private PrimaryColorVO primaryColor;
     private LogoUrlVO logoUrl;
     private FaviconUrlVO faviconUrl;
     private WelcomeMessageVO welcomeMessage;
-    private boolean allowsCancelation;
-    private CancelationMaxHoursVO cancelationMaxHours;
+    private boolean allowsCancellation;
+    private CancellationMaxHoursVO cancellationMaxHours;
 
     public TenantConfig() {
     }
 
     public TenantConfig(PrimaryColorVO primaryColor, LogoUrlVO logoUrl, FaviconUrlVO faviconUrl,
-            WelcomeMessageVO welcomeMessage, boolean allowsCancelation, CancelationMaxHoursVO cancelationMaxHours) {
+            WelcomeMessageVO welcomeMessage, boolean allowsCancellation, CancellationMaxHoursVO cancellationMaxHours) {
         this.primaryColor = primaryColor;
         this.logoUrl = logoUrl;
         this.faviconUrl = faviconUrl;
         this.welcomeMessage = welcomeMessage;
-        this.allowsCancelation = allowsCancelation;
-        this.cancelationMaxHours = cancelationMaxHours;
+        this.allowsCancellation = allowsCancellation;
+        this.cancellationMaxHours = cancellationMaxHours;
     }
 
     private TenantConfig(TenantConfigBuilder builder) {
@@ -32,8 +32,8 @@ public class TenantConfig {
         this.logoUrl = builder.logoUrl;
         this.faviconUrl = builder.faviconUrl;
         this.welcomeMessage = builder.welcomeMessage;
-        this.allowsCancelation = builder.allowsCancelation;
-        this.cancelationMaxHours = builder.cancelationMaxHours;
+        this.allowsCancellation = builder.allowsCancellation;
+        this.cancellationMaxHours = builder.cancellationMaxHours;
     }
 
     public TenantConfigBuilder toBuilder() {
@@ -42,8 +42,8 @@ public class TenantConfig {
                 .withLogoUrl(this.logoUrl)
                 .withFaviconUrl(this.faviconUrl)
                 .withWelcomeMessage(this.welcomeMessage)
-                .withAllowsCancelation(this.allowsCancelation)
-                .withCancelationMaxHours(this.cancelationMaxHours);
+                .withAllowsCancellation(this.allowsCancellation)
+                .withCancellationMaxHours(this.cancellationMaxHours);
     }
 
     public static TenantConfigBuilder builder() {
@@ -55,8 +55,8 @@ public class TenantConfig {
         private LogoUrlVO logoUrl;
         private FaviconUrlVO faviconUrl;
         private WelcomeMessageVO welcomeMessage;
-        private boolean allowsCancelation;
-        private CancelationMaxHoursVO cancelationMaxHours;
+        private boolean allowsCancellation;
+        private CancellationMaxHoursVO cancellationMaxHours;
 
         public TenantConfigBuilder withPrimaryColor(PrimaryColorVO primaryColor) {
             this.primaryColor = primaryColor;
@@ -78,13 +78,13 @@ public class TenantConfig {
             return this;
         }
 
-        public TenantConfigBuilder withAllowsCancelation(boolean allowsCancelation) {
-            this.allowsCancelation = allowsCancelation;
+        public TenantConfigBuilder withAllowsCancellation(boolean allowsCancellation) {
+            this.allowsCancellation = allowsCancellation;
             return this;
         }
 
-        public TenantConfigBuilder withCancelationMaxHours(CancelationMaxHoursVO cancelationMaxHours) {
-            this.cancelationMaxHours = cancelationMaxHours;
+        public TenantConfigBuilder withCancellationMaxHours(CancellationMaxHoursVO cancellationMaxHours) {
+            this.cancellationMaxHours = cancellationMaxHours;
             return this;
         }
 
@@ -109,11 +109,11 @@ public class TenantConfig {
         return welcomeMessage;
     }
 
-    public boolean isAllowsCancelation() {
-        return allowsCancelation;
+    public boolean isAllowsCancellation() {
+        return allowsCancellation;
     }
 
-    public CancelationMaxHoursVO getCancelationMaxHours() {
-        return cancelationMaxHours;
+    public CancellationMaxHoursVO getCancellationMaxHours() {
+        return cancellationMaxHours;
     }
 }

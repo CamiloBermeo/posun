@@ -1,9 +1,9 @@
 package com.posun.domain.model;
 
+import com.posun.domain.valueObject.Employee.LastNameVO;
+import com.posun.domain.valueObject.Employee.NameVO;
+import com.posun.domain.valueObject.Employee.PhoneNumberVO;
 import com.posun.domain.valueObject.UserAdmin.PasswordVO;
-import com.posun.domain.valueObject.UserClient.NameVO;
-import com.posun.domain.valueObject.UserClient.LastNameVO;
-import com.posun.domain.valueObject.UserClient.PhoneNumberVO;
 
 public class UserClient {
     private Long userClientId;

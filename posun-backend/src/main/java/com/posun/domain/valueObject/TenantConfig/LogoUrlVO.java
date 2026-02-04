@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.TenantConfig;
 import java.util.Objects;
 
 public final class LogoUrlVO {
-    private final String logoUrl;
+    private final String value;
 
-    public LogoUrlVO(String logoUrl) {
-        if (logoUrl == null || logoUrl.trim().isEmpty()) {
+    public LogoUrlVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("la URL del logo no puede estar vacia");
         }
-        this.logoUrl = logoUrl;
+        this.value = value;
     }
 
-    public String getLogoUrl() {
-        return logoUrl;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class LogoUrlVO {
         if (o == null || getClass() != o.getClass())
             return false;
         LogoUrlVO logoUrlVO = (LogoUrlVO) o;
-        return Objects.equals(logoUrl, logoUrlVO.logoUrl);
+        return Objects.equals(value, logoUrlVO.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(logoUrl);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return logoUrl;
+        return value;
     }
 }

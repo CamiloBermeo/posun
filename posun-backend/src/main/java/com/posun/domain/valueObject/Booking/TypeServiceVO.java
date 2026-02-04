@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.Booking;
 import java.util.Objects;
 
 public final class TypeServiceVO {
-    private final String typeService;
+    private final String value;
 
-    public  TypeServiceVO(String typeService) {
-        if(typeService==null && typeService.trim().isEmpty()) {
+    public  TypeServiceVO(String value) {
+        if(value==null && value.trim().isEmpty()) {
             throw new IllegalArgumentException("el tipo de servicio no puede estar vacio");
         }
-        this.typeService = typeService;
+        this.value = value;
     }
 
-    public String getTypeService() {
-        return typeService;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -21,15 +21,15 @@ public final class TypeServiceVO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TypeServiceVO that = (TypeServiceVO) o;
-        return Objects.equals(typeService, that.typeService);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(typeService);
+        return Objects.hashCode(value);
     }
     @Override
     public String toString() {
-        return typeService;
+        return value;
     }
 }

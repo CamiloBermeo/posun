@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.Booking;
 import java.util.Objects;
 
 public final class ElectedEmployeeVO {
-    private final String electedEmployee;
+    private final String value;
 
-    public ElectedEmployeeVO(String electedEmployee) {
-        if (electedEmployee == null || electedEmployee.trim().isEmpty()) {
+    public ElectedEmployeeVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("el empleado elegido no puede estar vacio");
         }
-        this.electedEmployee = electedEmployee;
+        this.value = value;
     }
 
-    public String getElectedEmployee() {
-        return electedEmployee;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class ElectedEmployeeVO {
         if (o == null || getClass() != o.getClass())
             return false;
         ElectedEmployeeVO that = (ElectedEmployeeVO) o;
-        return Objects.equals(electedEmployee, that.electedEmployee);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(electedEmployee);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return electedEmployee;
+        return value;
     }
 }

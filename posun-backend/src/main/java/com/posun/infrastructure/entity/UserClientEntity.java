@@ -1,9 +1,5 @@
 package com.posun.infrastructure.entity;
 
-import com.posun.domain.valueObject.UserAdmin.PasswordVO;
-import com.posun.domain.valueObject.UserClient.LastNameVO;
-import com.posun.domain.valueObject.UserClient.NameVO;
-import com.posun.domain.valueObject.UserClient.PhoneNumberVO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,8 +15,9 @@ public class UserClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "tenant_id", nullable = false)
-    private Long tenantId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id", nullable = false)
+    private TenantEntity tenant;
     @Column(nullable = false, length = 100)
     private String name;
     @Column(nullable = false, length = 100)

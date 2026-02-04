@@ -16,7 +16,7 @@ public class TenantConfigEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant_id", nullable = false)
     private TenantEntity tenant;
     @Column(length = 7)
@@ -28,9 +28,9 @@ public class TenantConfigEntity {
     @Column(columnDefinition = "TEXT")
     private String welcomeMessage;
     @Column(nullable = false)
-    private boolean allowsCancelation;
+    private boolean allowsCancellation;
     @Column(nullable = false)
-    private Integer cancelationMaxHours;
+    private Integer cancellationMaxHours;
 
 
 }

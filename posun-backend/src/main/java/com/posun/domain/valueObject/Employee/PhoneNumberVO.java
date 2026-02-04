@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.Employee;
 import java.util.Objects;
 
 public final class PhoneNumberVO {
-    private final String phoneNumber;
+    private final String value;
 
-    public PhoneNumberVO(String phoneNumber) {
-        if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
+    public PhoneNumberVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("el numero de telefono no puede estar vacio");
         }
-        this.phoneNumber = phoneNumber;
+        this.value = value;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class PhoneNumberVO {
         if (o == null || getClass() != o.getClass())
             return false;
         PhoneNumberVO that = (PhoneNumberVO) o;
-        return Objects.equals(phoneNumber, that.phoneNumber);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(phoneNumber);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return phoneNumber;
+        return value;
     }
 }

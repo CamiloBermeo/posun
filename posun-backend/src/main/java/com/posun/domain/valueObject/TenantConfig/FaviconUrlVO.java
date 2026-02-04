@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.TenantConfig;
 import java.util.Objects;
 
 public final class FaviconUrlVO {
-    private final String faviconUrl;
+    private final String value;
 
-    public FaviconUrlVO(String faviconUrl) {
-        if (faviconUrl == null || faviconUrl.trim().isEmpty()) {
+    public FaviconUrlVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("la URL del favicon no puede estar vacia");
         }
-        this.faviconUrl = faviconUrl;
+        this.value = value;
     }
 
-    public String getFaviconUrl() {
-        return faviconUrl;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class FaviconUrlVO {
         if (o == null || getClass() != o.getClass())
             return false;
         FaviconUrlVO that = (FaviconUrlVO) o;
-        return Objects.equals(faviconUrl, that.faviconUrl);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(faviconUrl);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return faviconUrl;
+        return value;
     }
 }

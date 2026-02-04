@@ -6,16 +6,19 @@ import com.posun.domain.valueObject.Tenant.BusinessNameVO;
 import com.posun.domain.valueObject.Tenant.StatusVO;
 import com.posun.infrastructure.entity.TenantConfigEntity;
 import com.posun.infrastructure.entity.TenantEntity;
+import com.posun.infrastructure.entity.UserAdminEntity;
+
+import java.util.List;
 
 public class TenantInfraMapper {
 
     public static TenantEntity toEntity(Tenant tenant) {
 
         return TenantEntity.builder()
-                .businessName(tenant.getBusinessName().getBusinessName())
+                .businessName(tenant.getBusinessName().getValue())
                 .createdAt(tenant.getCreatedAt())
-                .status(tenant.getStatus().getStatus())
-                .assignedURL(tenant.getAssignedURL().getAssignedURL())
+                .status(tenant.getStatus().getValue())
+                .assignedURL(tenant.getAssignedURL().getValue())
                 .tenantConfig(tenantConfigToEntity(tenant))
                 .build();
 
@@ -34,12 +37,12 @@ public class TenantInfraMapper {
 
     public static TenantConfigEntity tenantConfigToEntity(Tenant tenant) {
         return TenantConfigEntity.builder()
-                .primaryColor(tenant.getTenantConfig().getPrimaryColor().getPrimaryColor())
-                .logoUrl(tenant.getTenantConfig().getLogoUrl().getLogoUrl())
-                .faviconUrl(tenant.getTenantConfig().getFaviconUrl().getFaviconUrl())
-                .welcomeMessage(tenant.getTenantConfig().getWelcomeMessage().getWelcomeMessage())
-                .cancelationMaxHours(tenant.getTenantConfig().getCancelationMaxHours().getCancelationMaxHours())
-                .allowsCancelation(tenant.getTenantConfig().isAllowsCancelation())
+                .primaryColor(tenant.getTenantConfig().getPrimaryColor().getValue())
+                .logoUrl(tenant.getTenantConfig().getLogoUrl().getValue())
+                .faviconUrl(tenant.getTenantConfig().getFaviconUrl().getValue())
+                .welcomeMessage(tenant.getTenantConfig().getWelcomeMessage().getValue())
+                .cancellationMaxHours(tenant.getTenantConfig().getCancellationMaxHours().getValue())
+                .allowsCancellation(tenant.getTenantConfig().isAllowsCancellation())
                 .build();
     }
 }

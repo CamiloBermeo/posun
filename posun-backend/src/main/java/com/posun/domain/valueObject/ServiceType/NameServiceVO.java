@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.ServiceType;
 import java.util.Objects;
 
 public final class NameServiceVO {
-    private final String nameService;
+    private final String value;
 
-    public NameServiceVO(String nameService) {
-        if (nameService == null || nameService.trim().isEmpty()) {
+    public NameServiceVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("el nombre del servicio no puede estar vacio");
         }
-        this.nameService = nameService;
+        this.value = value;
     }
 
-    public String getNameService() {
-        return nameService;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class NameServiceVO {
         if (o == null || getClass() != o.getClass())
             return false;
         NameServiceVO that = (NameServiceVO) o;
-        return Objects.equals(nameService, that.nameService);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(nameService);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return nameService;
+        return value;
     }
 }

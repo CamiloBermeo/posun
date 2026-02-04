@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.TenantConfig;
 import java.util.Objects;
 
 public final class PrimaryColorVO {
-    private final String primaryColor;
+    private final String value;
 
-    public PrimaryColorVO(String primaryColor) {
-        if (primaryColor == null || primaryColor.trim().isEmpty()) {
+    public PrimaryColorVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("el color primario no puede estar vacio");
         }
-        this.primaryColor = primaryColor;
+        this.value = value;
     }
 
-    public String getPrimaryColor() {
-        return primaryColor;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class PrimaryColorVO {
         if (o == null || getClass() != o.getClass())
             return false;
         PrimaryColorVO that = (PrimaryColorVO) o;
-        return Objects.equals(primaryColor, that.primaryColor);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(primaryColor);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return primaryColor;
+        return value;
     }
 }

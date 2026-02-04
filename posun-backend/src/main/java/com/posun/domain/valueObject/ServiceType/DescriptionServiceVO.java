@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.ServiceType;
 import java.util.Objects;
 
 public final class DescriptionServiceVO {
-    private final String descriptionService;
+    private final String value;
 
-    public DescriptionServiceVO(String descriptionService) {
-        if (descriptionService == null || descriptionService.trim().isEmpty()) {
+    public DescriptionServiceVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("la descripcion del servicio no puede estar vacia");
         }
-        this.descriptionService = descriptionService;
+        this.value = value;
     }
 
-    public String getDescriptionService() {
-        return descriptionService;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class DescriptionServiceVO {
         if (o == null || getClass() != o.getClass())
             return false;
         DescriptionServiceVO that = (DescriptionServiceVO) o;
-        return Objects.equals(descriptionService, that.descriptionService);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(descriptionService);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return descriptionService;
+        return value;
     }
 }

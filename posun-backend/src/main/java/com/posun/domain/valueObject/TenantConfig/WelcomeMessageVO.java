@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.TenantConfig;
 import java.util.Objects;
 
 public final class WelcomeMessageVO {
-    private final String welcomeMessage;
+    private final String value;
 
-    public WelcomeMessageVO(String welcomeMessage) {
-        if (welcomeMessage == null || welcomeMessage.trim().isEmpty()) {
+    public WelcomeMessageVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("el mensaje de bienvenida no puede estar vacio");
         }
-        this.welcomeMessage = welcomeMessage;
+        this.value = value;
     }
 
-    public String getWelcomeMessage() {
-        return welcomeMessage;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class WelcomeMessageVO {
         if (o == null || getClass() != o.getClass())
             return false;
         WelcomeMessageVO that = (WelcomeMessageVO) o;
-        return Objects.equals(welcomeMessage, that.welcomeMessage);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(welcomeMessage);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return welcomeMessage;
+        return value;
     }
 }

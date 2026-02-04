@@ -4,13 +4,13 @@ import java.text.Normalizer;
 import java.util.Objects;
 
 public final class AssignedURLVO {
-    private final String assignedURL;
+    private final String value;
 
     public AssignedURLVO(String businessName) {
         if (businessName == null || businessName.trim().isEmpty()) {
             throw new IllegalArgumentException("la URL asignada no puede estar vacia");
         }
-        this.assignedURL = assignedUrl(businessName);
+        this.value = assignedUrl(businessName);
     }
 
     //fabrica el slug que despues se unira con la url
@@ -25,8 +25,8 @@ public final class AssignedURLVO {
                 .replaceAll("\\s+","-");
     }
 
-    public String getAssignedURL() {
-        return assignedURL;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -36,16 +36,16 @@ public final class AssignedURLVO {
         if (o == null || getClass() != o.getClass())
             return false;
         AssignedURLVO that = (AssignedURLVO) o;
-        return Objects.equals(assignedURL, that.assignedURL);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(assignedURL);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return assignedURL;
+        return value;
     }
 }

@@ -3,17 +3,17 @@ package com.posun.domain.valueObject.Tenant;
 import java.util.Objects;
 
 public final class BusinessNameVO {
-    private final String businessName;
+    private final String value;
 
-    public BusinessNameVO(String businessName) {
-        if (businessName == null || businessName.trim().isEmpty()) {
+    public BusinessNameVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException("el nombre del negocio no puede estar vacio");
         }
-        this.businessName = businessName;
+        this.value = value;
     }
 
-    public String getBusinessName() {
-        return businessName;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class BusinessNameVO {
         if (o == null || getClass() != o.getClass())
             return false;
         BusinessNameVO that = (BusinessNameVO) o;
-        return Objects.equals(businessName, that.businessName);
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(businessName);
+        return Objects.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return businessName;
+        return value;
     }
 }

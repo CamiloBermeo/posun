@@ -4,16 +4,18 @@ import com.posun.application.dto.tenant.CreateTenantRequestDTO;
 import com.posun.application.dto.tenant.CreateTenantResponseDTO;
 import com.posun.domain.model.Tenant;
 import com.posun.domain.model.TenantConfig;
+import com.posun.domain.model.UserAdmin;
 import com.posun.domain.valueObject.Tenant.AssignedURLVO;
 import com.posun.domain.valueObject.Tenant.BusinessNameVO;
 import com.posun.domain.valueObject.Tenant.StatusVO;
 import com.posun.domain.valueObject.TenantConfig.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TenantAppMapper {
 
-    public static Tenant toModel(CreateTenantRequestDTO dto) {
+    public static Tenant toModel(CreateTenantRequestDTO dto, List<UserAdmin> userAdmin) {
 
 
         return Tenant.builder()
@@ -22,27 +24,34 @@ public class TenantAppMapper {
                 .withCreatedAt(LocalDateTime.now())
                 .withStatus(new StatusVO(true))
                 .withTenantConfig(tenantConfigToModel(dto))
+                .withUserAdmin(userAdmin)
                 .build();
     }
 
     public static CreateTenantResponseDTO toDTO(Tenant tenant) {
+        List<UserAdmin> admins = tenant.getUserAdmins();
+        UserAdmin primaryAdmin = (admins != null && !admins.isEmpty()) ? admins.getFirst() : null;
         return new CreateTenantResponseDTO(
                 tenant.getTenantId(),
-                tenant.getBusinessName().getBusinessName(),
-                tenant.getAssignedURL().getAssignedURL(),
+                tenant.getBusinessName().getValue(),
+                tenant.getAssignedURL().getValue(),
+                tenant.getStatus().getValue(),
                 tenant.getCreatedAt(),
-                tenant.getStatus().getStatus()
+                primaryAdmin != null ? primaryAdmin.getUserAdminId() : null,
+                primaryAdmin != null ? primaryAdmin.getEmail().getValue() : null,
+                primaryAdmin != null ? primaryAdmin.getUserPosition().name() : null
         );
     }
 
-    public static TenantConfig tenantConfigToModel(CreateTenantRequestDTO dto){
+
+    private static TenantConfig tenantConfigToModel(CreateTenantRequestDTO dto) {
         return TenantConfig.builder()
                 .withPrimaryColor(new PrimaryColorVO(dto.tenantConfigDTO().primaryColor()))
                 .withLogoUrl(new LogoUrlVO(dto.tenantConfigDTO().logoUrl()))
                 .withFaviconUrl(new FaviconUrlVO(dto.tenantConfigDTO().faviconUrl()))
                 .withWelcomeMessage(new WelcomeMessageVO(dto.tenantConfigDTO().welcomeMessage()))
-                .withAllowsCancelation(dto.tenantConfigDTO().allowsCancelation())
-                .withCancelationMaxHours(new CancelationMaxHoursVO(dto.tenantConfigDTO().cancelationMaxHours()))
+                .withAllowsCancellation(dto.tenantConfigDTO().allowsCancellation())
+                .withCancellationMaxHours(new CancellationMaxHoursVO(dto.tenantConfigDTO().cancellationMaxHours()))
                 .build();
     }
 

@@ -5,6 +5,7 @@ import com.posun.domain.valueObject.Tenant.AssignedURLVO;
 import com.posun.domain.valueObject.Tenant.StatusVO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Tenant {
     private Long tenantId;
@@ -13,17 +14,19 @@ public class Tenant {
     private StatusVO status;
     private LocalDateTime createdAt;
     private TenantConfig tenantConfig;
+    private List<UserAdmin> userAdmins;
 
     public Tenant() {
     }
 
-    public Tenant(Long tenantId, BusinessNameVO businessName, AssignedURLVO assignedURL, StatusVO status, LocalDateTime createdAt, TenantConfig tenantConfig) {
+    public Tenant(Long tenantId, BusinessNameVO businessName, AssignedURLVO assignedURL, StatusVO status, LocalDateTime createdAt, TenantConfig tenantConfig, List<UserAdmin> userAdmins) {
         this.tenantId = tenantId;
         this.businessName = businessName;
         this.AssignedURL = assignedURL;
         this.status = status;
         this.createdAt = LocalDateTime.now();//asigna la hora actual
         this.tenantConfig = tenantConfig;
+        this.userAdmins = userAdmins;
 
     }
 
@@ -34,7 +37,7 @@ public class Tenant {
         this.status = builder.status;
         this.createdAt = builder.createdAt;
         this.tenantConfig = builder.tenantConfig;
-
+        this.userAdmins = builder.userAdmins;
     }
 
     public TenantBuilder toBuilder() {
@@ -44,7 +47,8 @@ public class Tenant {
                 .withAssignedURL(this.AssignedURL)
                 .withStatus(this.status)
                 .withCreatedAt(LocalDateTime.now())
-                .withTenantConfig(this.tenantConfig);
+                .withTenantConfig(this.tenantConfig)
+                .withUserAdmin(this.userAdmins);
     }
 
     public static TenantBuilder builder() {
@@ -58,6 +62,7 @@ public class Tenant {
         private LocalDateTime createdAt;
         private StatusVO status;
         private TenantConfig tenantConfig;
+        private List<UserAdmin> userAdmins;
 
         public TenantBuilder withTenantId(Long tenantId) {
             this.tenantId = tenantId;
@@ -83,13 +88,24 @@ public class Tenant {
             return this;
         }
 
-        public Tenant build() {
-            return new Tenant(this);
-        }
         public TenantBuilder withTenantConfig(TenantConfig tenantConfig) {
             this.tenantConfig = tenantConfig;
             return this;
         }
+
+        public TenantBuilder withUserAdmin(List<UserAdmin> userAdmins) {
+            this.userAdmins = userAdmins;
+            return this;
+        }
+
+        public Tenant build() {
+            return new Tenant(this);
+        }
+
+    }
+
+    public List<UserAdmin> getUserAdmins() {
+        return userAdmins;
     }
 
     public Long getTenantId() {

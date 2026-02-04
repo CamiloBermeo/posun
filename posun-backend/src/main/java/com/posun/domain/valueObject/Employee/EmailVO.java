@@ -1,18 +1,18 @@
-package com.posun.domain.valueObject.Tenant;
+package com.posun.domain.valueObject.Employee;
 
 import java.util.Objects;
 
-public final class StatusVO {
-    private final Boolean value;
+public final class EmailVO {
+    private final String value;
 
-    public StatusVO(Boolean value) {
-        if (value == null) {
-            throw new IllegalArgumentException("el estado no puede ser nulo");
+    public EmailVO(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            throw new IllegalArgumentException("el value no puede estar vacio");
         }
         this.value = value;
     }
 
-    public Boolean getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -22,8 +22,8 @@ public final class StatusVO {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        StatusVO statusVO = (StatusVO) o;
-        return Objects.equals(value, statusVO.value);
+        EmailVO that = (EmailVO) o;
+        return Objects.equals(value, that.value);
     }
 
     @Override
@@ -33,6 +33,6 @@ public final class StatusVO {
 
     @Override
     public String toString() {
-        return value.toString();
+        return value;
     }
 }

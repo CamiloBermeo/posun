@@ -3,10 +3,14 @@ package com.posun.application.dto.tenant;
 import java.time.LocalDateTime;
 
 public record CreateTenantResponseDTO(
-        Long id,
+        Long tenantId,
         String businessName,
-        String AssignedURL,
+        String assignedURL,
+        boolean status,
         LocalDateTime createdAt,
-        boolean status
+
+        Long adminId,
+        String adminEmail,
+        String userPosition
 ) {
 }
