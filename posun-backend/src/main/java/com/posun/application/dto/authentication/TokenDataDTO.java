@@ -1,8 +1,6 @@
 package com.posun.application.dto.authentication;
 
-public record RegisterRequestDTO(
-
-
-
+public record TokenDataDTO(
+        String tokenJwt
 ) {
 }

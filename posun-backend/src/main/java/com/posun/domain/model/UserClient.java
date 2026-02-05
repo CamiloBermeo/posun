@@ -1,42 +1,24 @@
 package com.posun.domain.model;
 
+import com.posun.domain.valueObject.Employee.EmailVO;
 import com.posun.domain.valueObject.Employee.LastNameVO;
 import com.posun.domain.valueObject.Employee.NameVO;
 import com.posun.domain.valueObject.Employee.PhoneNumberVO;
 import com.posun.domain.valueObject.UserAdmin.PasswordVO;
 
-public class UserClient {
-    private Long userClientId;
-    private Long tenantId;
-    private NameVO name;
-    private LastNameVO lastName;
-    private PhoneNumberVO phoneNumber;
-    private PasswordVO password;
+public class UserClient extends  UserModel{
 
-    public UserClient() {
-    }
 
-    public UserClient(Long userClientId, Long tenantId,  NameVO name, LastNameVO lastName, PhoneNumberVO phoneNumber,PasswordVO password) {
-        this.userClientId = userClientId;
-        this.tenantId = tenantId;
-        this.name = name;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
+    public UserClient(Long userClientId, Long tenantId, NameVO name, LastNameVO lastName, PhoneNumberVO phoneNumber, PasswordVO password, EmailVO email) {
+        super(userClientId, tenantId, phoneNumber, password, name, lastName, email);
     }
 
     private UserClient(UserClientBuilder builder) {
-        this.userClientId = builder.userClientId;
-        this.tenantId = builder.tenantId;
-        this.name = builder.name;
-        this.lastName = builder.lastName;
-        this.phoneNumber = builder.phoneNumber;
-        this.password = builder.password;
+        super(builder.userClientId, builder.tenantId, builder.phoneNumber, builder.password, builder.name,builder.lastName, builder.email);
     }
 
     public UserClientBuilder toBuilder() {
         return new UserClientBuilder()
-                .withUserClientId(this.userClientId)
                 .withTenantId(this.tenantId)
                 .withName(this.name)
                 .withLastName(this.lastName)
@@ -54,6 +36,7 @@ public class UserClient {
         private NameVO name;
         private LastNameVO lastName;
         private PhoneNumberVO phoneNumber;
+        private EmailVO email;
         private PasswordVO password;
 
         public UserClientBuilder withUserClientId(Long userClientId) {
@@ -64,6 +47,10 @@ public class UserClient {
 
         public UserClientBuilder withTenantId(Long tenantId) {
             this.tenantId = tenantId;
+            return this;
+        }
+        public UserClientBuilder withEmail(EmailVO email) {
+            this.email = email;
             return this;
         }
 
@@ -91,27 +78,4 @@ public class UserClient {
         }
     }
 
-    public Long getUserClientId() {
-        return userClientId;
-    }
-
-    public NameVO getName() {
-        return name;
-    }
-
-    public LastNameVO getLastName() {
-        return lastName;
-    }
-
-    public PhoneNumberVO getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public Long getTenantId() {
-        return tenantId;
-    }
-
-    public PasswordVO getPassword() {
-        return password;
-    }
 }

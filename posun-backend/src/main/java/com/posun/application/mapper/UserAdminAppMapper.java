@@ -6,9 +6,9 @@ import com.posun.domain.model.UserPosition;
 import com.posun.domain.valueObject.Employee.EmailVO;
 import com.posun.domain.valueObject.Employee.LastNameVO;
 import com.posun.domain.valueObject.Employee.NameVO;
+import com.posun.domain.valueObject.Employee.PhoneNumberVO;
 import com.posun.domain.valueObject.Tenant.StatusVO;
 import com.posun.domain.valueObject.UserAdmin.PasswordVO;
-import com.posun.domain.valueObject.UserAdmin.PhoneNumberVO;
 
 import java.util.List;
 

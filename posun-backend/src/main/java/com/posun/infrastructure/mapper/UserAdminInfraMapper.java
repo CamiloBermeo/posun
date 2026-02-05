@@ -1,7 +1,6 @@
 package com.posun.infrastructure.mapper;
 
 import com.posun.domain.model.UserAdmin;
-import com.posun.domain.model.UserPosition;
 import com.posun.domain.valueObject.Employee.EmailVO;
 import com.posun.domain.valueObject.Employee.LastNameVO;
 import com.posun.domain.valueObject.Employee.NameVO;

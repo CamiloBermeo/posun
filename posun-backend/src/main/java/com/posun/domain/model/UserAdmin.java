@@ -3,55 +3,36 @@ package com.posun.domain.model;
 import com.posun.domain.valueObject.Employee.EmailVO;
 import com.posun.domain.valueObject.Employee.LastNameVO;
 import com.posun.domain.valueObject.Employee.NameVO;
+import com.posun.domain.valueObject.Employee.PhoneNumberVO;
 import com.posun.domain.valueObject.Tenant.StatusVO;
-import com.posun.domain.valueObject.UserAdmin.PhoneNumberVO;
 import com.posun.domain.valueObject.UserAdmin.PasswordVO;
 
-public class UserAdmin {
-    private Long userAdminId;
-    private Long tenantId;
-    private UserPosition userPosition;
-    private NameVO name;
-    private LastNameVO lastName;
-    private PhoneNumberVO phoneNumber;
-    private EmailVO email;
-    private PasswordVO password;
-    private TenantConfig tenantConfig;
-    private StatusVO status;
+public class UserAdmin extends UserModel{
 
-    public UserAdmin() {
-    }
+    private final UserPosition userPosition;
+    private final TenantConfig tenantConfig;
+    private final StatusVO status;
+
+
 
     public UserAdmin(Long userAdminId, Long tenantId, PhoneNumberVO phoneNumber, PasswordVO password, TenantConfig tenantConfig,
-                     NameVO name,LastNameVO lastName,UserPosition userPosition, EmailVO email, StatusVO status){
-        this.userAdminId = userAdminId;
-        this.tenantId = tenantId;
-        this.name = name;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
+                     NameVO name, LastNameVO lastName, UserPosition userPosition, EmailVO email, StatusVO status){
+        super(userAdminId, tenantId, phoneNumber, password, name, lastName, email);
         this.tenantConfig = tenantConfig;
         this.userPosition = userPosition;
-        this.email = email;
         this.status = status;
     }
 
     private UserAdmin(UserAdminBuilder builder) {
-        this.userAdminId = builder.userAdminId;
-        this.tenantId = builder.tenantId;
-        this.name = builder.name;
+
+        super(builder.userAdminId, builder.tenantId, builder.phoneNumber, builder.password, builder.name, builder.lastName, builder.email);
         this.userPosition = builder.userPosition;
-        this.lastName = builder.lastName;
-        this.phoneNumber = builder.phoneNumber;
-        this.email = builder.email;
-        this.password = builder.password;
         this.tenantConfig = builder.tenantConfig;
         this.status = builder.status;
     }
 
     public UserAdminBuilder toBuilder() {
         return new UserAdminBuilder()
-                .withUserAdminId(this.userAdminId)
                 .withTenantId(this.tenantId)
                 .withName(this.name)
                 .withUserPosition(this.userPosition)
@@ -130,40 +111,10 @@ public class UserAdmin {
     public StatusVO getStatus() {
         return status;
     }
-
-    public EmailVO getEmail() {
-        return email;
-    }
-
     public UserPosition getUserPosition() {
         return userPosition;
     }
-
-    public NameVO getName() {
-        return name;
-    }
-
-    public LastNameVO getLastName() {
-        return lastName;
-    }
-
-    public Long getUserAdminId() {
-        return userAdminId;
-    }
-
-    public PhoneNumberVO getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public PasswordVO getPassword() {
-        return password;
-    }
-
     public TenantConfig getTenantConfig() {
         return tenantConfig;
-    }
-
-    public Long getTenantId() {
-        return tenantId;
     }
 }

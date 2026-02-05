@@ -37,7 +37,7 @@ public class TenantAppMapper {
                 tenant.getAssignedURL().getValue(),
                 tenant.getStatus().getValue(),
                 tenant.getCreatedAt(),
-                primaryAdmin != null ? primaryAdmin.getUserAdminId() : null,
+                primaryAdmin != null ? primaryAdmin.getUserId() : null,
                 primaryAdmin != null ? primaryAdmin.getEmail().getValue() : null,
                 primaryAdmin != null ? primaryAdmin.getUserPosition().name() : null
         );
