@@ -1,6 +1,12 @@
 package com.posun.infrastructure.mapper;
 
 import com.posun.domain.model.UserAdmin;
+import com.posun.domain.model.UserPosition;
+import com.posun.domain.valueObject.Employee.EmailVO;
+import com.posun.domain.valueObject.Employee.LastNameVO;
+import com.posun.domain.valueObject.Employee.NameVO;
+import com.posun.domain.valueObject.Tenant.StatusVO;
+import com.posun.domain.valueObject.UserAdmin.PasswordVO;
 import com.posun.infrastructure.entity.TenantEntity;
 import com.posun.infrastructure.entity.UserAdminEntity;
 
@@ -25,8 +31,17 @@ public class UserAdminInfraMapper {
 
     }
 
-    public static UserAdmin toModel(UserAdminEntity Entity) {
-        return null;
+    public static UserAdmin toModel(UserAdminEntity entity) {
+        UserAdmin.UserAdminBuilder builder = UserAdmin.builder()
+                .withUserAdminId(entity.getId())
+                .withTenantId(entity.getId())
+                .withName(new NameVO(entity.getName()))
+                .withLastName(new LastNameVO(entity.getLastName()))
+                .withUserPosition(entity.getUserPosition())
+                .withStatus(new StatusVO(entity.isActive()))
+                .withEmail(new EmailVO(entity.getEmail()))
+                .withPassword(new PasswordVO(entity.getPasswordHash()));
+        return builder.build();
     }
     public static List<UserAdminEntity> toEntityList(List<UserAdmin> models, TenantEntity tenantEntity) {
         if (models == null || models.isEmpty()) {

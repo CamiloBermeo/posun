@@ -25,7 +25,8 @@ public class TenantRepositoryJpaAdapter implements ITenantRepository {
             tenantEntity.getTenantConfig().setTenant(tenantEntity); // Vinculamos el hijo con el padre
         }
         List<UserAdminEntity> userAdminEntities = UserAdminInfraMapper.toEntityList(tenant.getUserAdmins(), tenantEntity);
-        userAdminEntities.forEach(tenantEntity::addAdmin);        TenantEntity tenantSaved = jpa.save(tenantEntity);
+        userAdminEntities.forEach(tenantEntity::addAdmin);
+        TenantEntity tenantSaved = jpa.save(tenantEntity);
         return TenantInfraMapper.toDomain(tenantSaved);
     }
 }

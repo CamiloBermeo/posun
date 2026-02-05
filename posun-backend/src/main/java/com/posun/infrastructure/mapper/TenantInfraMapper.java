@@ -31,6 +31,8 @@ public class TenantInfraMapper {
                 .withAssignedURL(new AssignedURLVO(tenantEntity.getAssignedURL()))
                 .withCreatedAt(tenantEntity.getCreatedAt())
                 .withStatus(new StatusVO(tenantEntity.isStatus()))
+                .withUserAdmin(tenantEntity.getUserAdmins().stream()
+                        .map(UserAdminInfraMapper::toModel).toList())
                 .build().toBuilder();
         return TenantBuilder.build();
     }
