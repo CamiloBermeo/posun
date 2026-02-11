@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TenantRepositoryJpaAdapter implements ITenantRepository {
 
-    private final ITenantRepositoryJPA jpa;
+    private final ITenantRepositoryJpa jpa;
 
     @Override
     public Tenant createTenant(Tenant tenant) {
