@@ -1,5 +1,6 @@
 package com.posun.infrastructure.mapper;
 
+import com.posun.domain.model.Tenant;
 import com.posun.domain.model.UserAdmin;
 import com.posun.domain.valueObject.Employee.EmailVO;
 import com.posun.domain.valueObject.Employee.LastNameVO;
@@ -30,10 +31,10 @@ public class UserAdminInfraMapper {
 
     }
 
-    public static UserAdmin toModel(UserAdminEntity entity) {
+    public static UserAdmin toModel(UserAdminEntity entity, Tenant tenant) {
         UserAdmin.UserAdminBuilder builder = UserAdmin.builder()
                 .withUserAdminId(entity.getId())
-                .withTenantId(entity.getId())
+                .withTenant(tenant)
                 .withName(new NameVO(entity.getName()))
                 .withLastName(new LastNameVO(entity.getLastName()))
                 .withUserPosition(entity.getUserPosition())

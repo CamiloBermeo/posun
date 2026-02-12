@@ -1,16 +1,18 @@
 package com.posun.infrastructure.mapper;
 
+import com.posun.domain.model.Tenant;
 import com.posun.domain.model.UserClient;
 import com.posun.domain.valueObject.Employee.EmailVO;
 import com.posun.domain.valueObject.Employee.LastNameVO;
 import com.posun.domain.valueObject.Employee.NameVO;
 import com.posun.domain.valueObject.Employee.PhoneNumberVO;
 import com.posun.domain.valueObject.UserAdmin.PasswordVO;
+import com.posun.infrastructure.entity.TenantEntity;
 import com.posun.infrastructure.entity.UserClientEntity;
 
 public class UserClientInfraMapper {
 
-    public static UserClient toModel (UserClientEntity entity){
+    public static UserClient toModel (UserClientEntity entity, Tenant tenant){
 
         UserClient.UserClientBuilder userClientBuilder = UserClient.builder()
                 .withUserClientId(entity.getId())
@@ -19,10 +21,22 @@ public class UserClientInfraMapper {
                 .withPhoneNumber(new PhoneNumberVO(entity.getPhoneNumber()))
                 .withEmail(new EmailVO(entity.getEmail()))
                 .withPassword(new PasswordVO(entity.getPasswordHash()))
-                .withTenantId(entity.getTenant().getId())
+                .withTenant(tenant)
                 .build().toBuilder();
 
         return userClientBuilder.build();
+    }
+
+    public static UserClientEntity toEntity (UserClient userClient, TenantEntity tenant){
+        return UserClientEntity.builder()
+                .id(userClient.getUserId())
+                .tenant(tenant)
+                .phoneNumber(userClient.getPhoneNumber().getValue())
+                .name(userClient.getName().getValue())
+                .lastName(userClient.getLastName().getValue())
+                .email(userClient.getEmail().getValue())
+                .passwordHash(userClient.getPassword().getValue())
+                .build();
     }
 
 }

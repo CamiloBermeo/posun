@@ -9,17 +9,17 @@ import com.posun.domain.valueObject.UserAdmin.PasswordVO;
 public class UserClient extends  UserModel{
 
 
-    public UserClient(Long userClientId, Long tenantId, NameVO name, LastNameVO lastName, PhoneNumberVO phoneNumber, PasswordVO password, EmailVO email) {
-        super(userClientId, tenantId, phoneNumber, password, name, lastName, email);
+    public UserClient(Long userClientId, Tenant tenant, NameVO name, LastNameVO lastName, PhoneNumberVO phoneNumber, PasswordVO password, EmailVO email) {
+        super(userClientId, tenant, phoneNumber, password, name, lastName, email);
     }
 
     private UserClient(UserClientBuilder builder) {
-        super(builder.userClientId, builder.tenantId, builder.phoneNumber, builder.password, builder.name,builder.lastName, builder.email);
+        super(builder.userClientId, builder.tenant, builder.phoneNumber, builder.password, builder.name,builder.lastName, builder.email);
     }
 
     public UserClientBuilder toBuilder() {
         return new UserClientBuilder()
-                .withTenantId(this.tenantId)
+                .withTenant(this.tenant)
                 .withName(this.name)
                 .withLastName(this.lastName)
                 .withPhoneNumber(this.phoneNumber)
@@ -32,7 +32,7 @@ public class UserClient extends  UserModel{
 
     public static class UserClientBuilder {
         private Long userClientId;
-        private Long tenantId;
+        private Tenant tenant;
         private NameVO name;
         private LastNameVO lastName;
         private PhoneNumberVO phoneNumber;
@@ -45,8 +45,8 @@ public class UserClient extends  UserModel{
         }
 
 
-        public UserClientBuilder withTenantId(Long tenantId) {
-            this.tenantId = tenantId;
+        public UserClientBuilder withTenant(Tenant tenant) {
+            this.tenant = tenant;
             return this;
         }
         public UserClientBuilder withEmail(EmailVO email) {

@@ -1,8 +1,11 @@
 package com.posun.infrastructure.persistence.users;
 
+import com.posun.domain.model.Tenant;
 import com.posun.domain.model.UserModel;
 import com.posun.domain.repository.IUserRepository;
+import com.posun.infrastructure.entity.TenantEntity;
 import com.posun.infrastructure.entity.UserEntity;
+import com.posun.infrastructure.mapper.TenantInfraMapper;
 import com.posun.infrastructure.mapper.UserInfraMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,7 +19,7 @@ public class UserRepositoryJpaAdapter implements IUserRepository {
     public UserModel findByEmail(String email) {
 
         UserEntity userEntity = jpa.findByEmail(email);
-
-        return UserInfraMapper.toModel(userEntity);
+        Tenant tenant = TenantInfraMapper.toDomain(userEntity.getTenant());
+        return UserInfraMapper.toModel(userEntity, tenant);
     }
 }

@@ -23,7 +23,7 @@ public class CreateTenantUseCase {
     public CreateTenantResponseDTO createTenant(CreateTenantRequestDTO createTenantRequestDTO) {
         String encodePassword = passwordEncoder.encode(createTenantRequestDTO.userAdminRequestDTO().password());
 
-        List<UserAdmin> userAdmin = UserAdminAppMapper.toModel(createTenantRequestDTO.userAdminRequestDTO(), encodePassword);
+        UserAdmin userAdmin = UserAdminAppMapper.toModel(createTenantRequestDTO.userAdminRequestDTO(), encodePassword);
         Tenant tenant = TenantAppMapper.toModel(createTenantRequestDTO, userAdmin);
         Tenant tenantRepository = repository.createTenant(tenant);
 

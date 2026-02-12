@@ -32,7 +32,7 @@ public class TenantInfraMapper {
                 .withCreatedAt(tenantEntity.getCreatedAt())
                 .withStatus(new StatusVO(tenantEntity.isStatus()))
                 .withUserAdmin(tenantEntity.getUserAdmins().stream()
-                        .map(UserAdminInfraMapper::toModel).toList())
+                        .map())
                 .build().toBuilder();
         return TenantBuilder.build();
     }

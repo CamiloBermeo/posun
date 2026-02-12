@@ -10,7 +10,7 @@ import com.posun.domain.valueObject.UserAdmin.PasswordVO;
 public abstract class UserModel {
 
     protected final Long userId;
-    protected final Long tenantId;
+    protected final Tenant tenant;
     protected final NameVO name;
     protected final LastNameVO lastName;
     protected final PhoneNumberVO phoneNumber;
@@ -18,10 +18,10 @@ public abstract class UserModel {
     protected final PasswordVO password;
 
 
-    protected UserModel(Long userId, Long tenantId, PhoneNumberVO phoneNumber, PasswordVO password,
+    protected UserModel(Long userId, Tenant tenant, PhoneNumberVO phoneNumber, PasswordVO password,
                         NameVO name, LastNameVO lastName,EmailVO email) {
         this.userId = userId;
-        this.tenantId = tenantId;
+        this.tenant = tenant;
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -38,8 +38,8 @@ public abstract class UserModel {
         return userId;
     }
 
-    public Long getTenantId() {
-        return tenantId;
+    public Tenant getTenant() {
+        return tenant;
     }
 
     public NameVO getName() {

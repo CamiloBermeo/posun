@@ -11,11 +11,12 @@ import com.posun.domain.valueObject.Tenant.StatusVO;
 import com.posun.domain.valueObject.TenantConfig.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TenantAppMapper {
 
-    public static Tenant toModel(CreateTenantRequestDTO dto, List<UserAdmin> userAdmin) {
+    public static Tenant toModel(CreateTenantRequestDTO dto, UserAdmin userAdmin) {
 
 
         return Tenant.builder()
@@ -24,7 +25,7 @@ public class TenantAppMapper {
                 .withCreatedAt(LocalDateTime.now())
                 .withStatus(new StatusVO(true))
                 .withTenantConfig(tenantConfigToModel(dto))
-                .withUserAdmin(userAdmin)
+                .withUserAdmin(List.of(userAdmin))
                 .build();
     }
 

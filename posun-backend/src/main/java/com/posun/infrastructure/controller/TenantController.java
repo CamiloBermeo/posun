@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TenantController {
     private final CreateTenantUseCase createTenantUseCase;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<CreateTenantResponseDTO> createTenant(@RequestBody CreateTenantRequestDTO createTenantRequestDTO) {
         CreateTenantResponseDTO responseDTO = createTenantUseCase.createTenant(createTenantRequestDTO);
         return ResponseEntity.ok(responseDTO);

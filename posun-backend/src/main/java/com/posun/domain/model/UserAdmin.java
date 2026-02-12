@@ -15,9 +15,9 @@ public class UserAdmin extends UserModel{
 
 
 
-    public UserAdmin(Long userAdminId, Long tenantId, PhoneNumberVO phoneNumber, PasswordVO password, TenantConfig tenantConfig,
+    public UserAdmin(Long userAdminId, Tenant tenant, PhoneNumberVO phoneNumber, PasswordVO password, TenantConfig tenantConfig,
                      NameVO name, LastNameVO lastName, UserPosition userPosition, EmailVO email, StatusVO status){
-        super(userAdminId, tenantId, phoneNumber, password, name, lastName, email);
+        super(userAdminId, tenant, phoneNumber, password, name, lastName, email);
         this.tenantConfig = tenantConfig;
         this.userPosition = userPosition;
         this.status = status;
@@ -25,7 +25,7 @@ public class UserAdmin extends UserModel{
 
     private UserAdmin(UserAdminBuilder builder) {
 
-        super(builder.userAdminId, builder.tenantId, builder.phoneNumber, builder.password, builder.name, builder.lastName, builder.email);
+        super(builder.userAdminId, builder.tenant, builder.phoneNumber, builder.password, builder.name, builder.lastName, builder.email);
         this.userPosition = builder.userPosition;
         this.tenantConfig = builder.tenantConfig;
         this.status = builder.status;
@@ -33,7 +33,7 @@ public class UserAdmin extends UserModel{
 
     public UserAdminBuilder toBuilder() {
         return new UserAdminBuilder()
-                .withTenantId(this.tenantId)
+                .withTenant(this.tenant)
                 .withName(this.name)
                 .withUserPosition(this.userPosition)
                 .withLastName(this.lastName)
@@ -50,7 +50,7 @@ public class UserAdmin extends UserModel{
 
     public static class UserAdminBuilder {
         private Long userAdminId;
-        private Long tenantId;
+        private Tenant tenant;
         private NameVO name;
         private LastNameVO lastName;
         private UserPosition userPosition;
@@ -72,8 +72,8 @@ public class UserAdmin extends UserModel{
             this.email = email;
             return this;
         }
-        public UserAdminBuilder withTenantId(Long tenantId) {
-            this.tenantId = tenantId;
+        public UserAdminBuilder withTenant(Tenant tenant) {
+            this.tenant = tenant;
             return this;
         }
         public UserAdminBuilder withName(NameVO name) {

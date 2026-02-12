@@ -8,20 +8,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/auth")
+@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
 
-    @PostMapping("/login")
-    public ResponseEntity logIn(@RequestBody AuthDataDTO dto) {
+    @GetMapping("/login")
+    public ResponseEntity<TokenDataDTO> logIn(@RequestBody AuthDataDTO dto) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(dto.email(), dto.password());
         var authentication = authenticationManager.authenticate(authenticationToken);
@@ -29,5 +26,6 @@ public class AuthController {
 
         return ResponseEntity.ok(new TokenDataDTO(tokenJwt));
     }
+
 
 }
