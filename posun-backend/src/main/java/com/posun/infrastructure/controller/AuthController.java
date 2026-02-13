@@ -17,7 +17,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<TokenDataDTO> logIn(@RequestBody AuthDataDTO dto) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(dto.email(), dto.password());

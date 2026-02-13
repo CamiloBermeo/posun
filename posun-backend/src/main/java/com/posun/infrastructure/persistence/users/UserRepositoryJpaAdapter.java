@@ -9,6 +9,7 @@ import com.posun.infrastructure.mapper.TenantInfraMapper;
 import com.posun.infrastructure.mapper.UserInfraMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ public class UserRepositoryJpaAdapter implements IUserRepository {
     private final IUserRepositoryJpa jpa;
 
     @Override
+    @Transactional(readOnly = true)
     public UserModel findByEmail(String email) {
 
         UserEntity userEntity = jpa.findByEmail(email);

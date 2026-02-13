@@ -1,6 +1,7 @@
 package com.posun.infrastructure.mapper;
 
 import com.posun.domain.model.Tenant;
+import com.posun.domain.model.UserAdmin;
 import com.posun.domain.valueObject.Tenant.AssignedURLVO;
 import com.posun.domain.valueObject.Tenant.BusinessNameVO;
 import com.posun.domain.valueObject.Tenant.StatusVO;
@@ -25,16 +26,19 @@ public class TenantInfraMapper {
     }
 
     public static Tenant toDomain(TenantEntity tenantEntity) {
-        Tenant.TenantBuilder TenantBuilder = Tenant.builder()
+        Tenant.TenantBuilder tenantBuilder = Tenant.builder()
                 .withTenantId(tenantEntity.getId())
                 .withBusinessName(new BusinessNameVO(tenantEntity.getBusinessName()))
                 .withAssignedURL(new AssignedURLVO(tenantEntity.getAssignedURL()))
                 .withCreatedAt(tenantEntity.getCreatedAt())
                 .withStatus(new StatusVO(tenantEntity.isStatus()))
-                .withUserAdmin(tenantEntity.getUserAdmins().stream()
-                        .map())
                 .build().toBuilder();
-        return TenantBuilder.build();
+
+        // 2. Ahora que 'tenant' existe, mapeamos los hijos pasándole esa referencia
+        List<UserAdmin> userAdmins = tenantEntity.getUserAdmins().stream()
+                .map(entity -> UserAdminInfraMapper.toModel(entity, tenantBuilder.build())) // Pasamos el tenant que creamos arriba
+                .toList();
+        return tenantBuilder.build();
     }
 
     public static TenantConfigEntity tenantConfigToEntity(Tenant tenant) {
