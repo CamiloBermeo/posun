@@ -21,4 +21,6 @@ public class TenantController {
         CreateTenantResponseDTO responseDTO = createTenantUseCase.createTenant(createTenantRequestDTO);
         return ResponseEntity.ok(responseDTO);
     }
+
+
 }
