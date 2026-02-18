@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/api/v1/auth/login").permitAll()
                         .requestMatchers("/api/v1/tenants/register").permitAll()
+                        .requestMatchers("/api/v1/users/admins").hasRole("OWNER")
                         .anyRequest()
                         .authenticated()
                 )
