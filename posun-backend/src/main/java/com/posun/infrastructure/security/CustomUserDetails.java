@@ -34,6 +34,10 @@ public class CustomUserDetails implements UserDetails {
             return user.getEmail().getValue();
         }
 
+        public Long tenantId(){
+            return user.getTenant().getTenantId();
+        }
+
         @Override
         public boolean isAccountNonExpired() {
             return true;

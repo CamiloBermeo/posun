@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -28,5 +29,10 @@ public class TenantRepositoryJpaAdapter implements ITenantRepository {
         userAdminEntities.forEach(tenantEntity::addAdmin);
         TenantEntity tenantSaved = jpa.save(tenantEntity);
         return TenantInfraMapper.toDomain(tenantSaved);
+    }
+
+    @Override
+    public Optional<Tenant> findById(Long id) {
+        return jpa.findById(id).map(TenantInfraMapper::toDomain);
     }
 }

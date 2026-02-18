@@ -1,10 +1,10 @@
 package com.posun.application.dto.tenant;
 
-import com.posun.application.dto.userAdmin.UserRequestDTO;
+import com.posun.application.dto.userAdmin.UserAdminRequestDTO;
 
 public record CreateTenantRequestDTO(
         String businessName,
         TenantConfigDTO tenantConfigDTO,
-        UserRequestDTO userAdminRequestDTO
+        UserAdminRequestDTO userAdminRequestDTO
 ) {
 }

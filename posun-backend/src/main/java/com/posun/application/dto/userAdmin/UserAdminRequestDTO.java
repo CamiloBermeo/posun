@@ -1,6 +1,6 @@
 package com.posun.application.dto.userAdmin;
 
-public record UserRequestDTO(
+public record UserAdminRequestDTO(
         String name,
         String lastName,
         String userPosition,
