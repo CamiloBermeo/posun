@@ -12,7 +12,7 @@ import com.posun.infrastructure.entity.UserClientEntity;
 
 public class UserClientInfraMapper {
 
-    public static UserClient toModel (UserClientEntity entity, Tenant tenant){
+    public static UserClient toModel (UserClientEntity entity){
 
         UserClient.UserClientBuilder userClientBuilder = UserClient.builder()
                 .withUserClientId(entity.getId())
@@ -21,16 +21,14 @@ public class UserClientInfraMapper {
                 .withPhoneNumber(new PhoneNumberVO(entity.getPhoneNumber()))
                 .withEmail(new EmailVO(entity.getEmail()))
                 .withPassword(new PasswordVO(entity.getPasswordHash()))
-                .withTenant(tenant)
                 .build().toBuilder();
 
         return userClientBuilder.build();
     }
 
-    public static UserClientEntity toEntity (UserClient userClient, TenantEntity tenant){
+    public static UserClientEntity toEntity (UserClient userClient){
         return UserClientEntity.builder()
                 .id(userClient.getUserId())
-                .tenant(tenant)
                 .phoneNumber(userClient.getPhoneNumber().getValue())
                 .name(userClient.getName().getValue())
                 .lastName(userClient.getLastName().getValue())

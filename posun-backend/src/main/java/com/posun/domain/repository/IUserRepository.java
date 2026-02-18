@@ -6,5 +6,5 @@ import com.posun.domain.model.UserModel;
 
 public interface IUserRepository {
     UserModel findByEmail(String email);
-    UserAdmin save(UserAdmin userModel, Tenant tenant);
+    UserAdmin save(UserAdmin userModel, Long tenantId);
 }

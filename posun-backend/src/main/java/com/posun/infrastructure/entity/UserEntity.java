@@ -19,7 +19,7 @@ public abstract class UserEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant_id", nullable = false)
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PUBLIC)
     private TenantEntity tenant;
 
     @Column(name = "phone_number", nullable = false, length = 20)

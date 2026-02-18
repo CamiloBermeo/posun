@@ -24,15 +24,19 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String tokenJWT = recoverToken(request);
-        if  (tokenJWT != null) {
+        if (tokenJWT != null) {
             String subject = tokenService.getSubject(tokenJWT);
             UserModel userValidator = repository.findByEmail(subject);
-            var authentication = new UsernamePasswordAuthenticationToken(userValidator, null, new CustomUserDetails(userValidator).getAuthorities());
-            System.out.println("Esta es la info que lleva authentication " + authentication);
+            if (userValidator != null) {
+                CustomUserDetails userDetails = new CustomUserDetails(userValidator);
+                var authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                System.out.println("Esta es la info que lleva authentication " + authentication);
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+
         }
-    filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 
     @Override
@@ -41,8 +45,8 @@ public class SecurityFilter extends OncePerRequestFilter {
         return path.equals("/login") || path.equals("/login/createUser");
     }
 
-    private String recoverToken(HttpServletRequest request){
-        String authorizationHeader =  request.getHeader("Authorization");
+    private String recoverToken(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             return authorizationHeader.substring(7).trim();
         }

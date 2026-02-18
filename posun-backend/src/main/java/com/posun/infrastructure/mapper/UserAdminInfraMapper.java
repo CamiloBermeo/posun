@@ -16,10 +16,9 @@ import java.util.stream.Collectors;
 
 public class UserAdminInfraMapper {
 
-    public static UserAdminEntity toEntity(UserAdmin model, TenantEntity tenantEntity) {
+    public static UserAdminEntity toEntity(UserAdmin model) {
 
         return UserAdminEntity.builder()
-                .tenant(tenantEntity)
                 .name(model.getName().getValue())
                 .lastName(model.getLastName().getValue())
                 .phoneNumber(model.getPhoneNumber().getValue())
@@ -31,10 +30,9 @@ public class UserAdminInfraMapper {
 
     }
 
-    public static UserAdmin toModel(UserAdminEntity entity, Tenant tenant) {
+    public static UserAdmin toModel(UserAdminEntity entity) {
         UserAdmin.UserAdminBuilder builder = UserAdmin.builder()
                 .withUserAdminId(entity.getId())
-                .withTenant(tenant)
                 .withName(new NameVO(entity.getName()))
                 .withLastName(new LastNameVO(entity.getLastName()))
                 .withUserPosition(entity.getUserPosition())
@@ -49,7 +47,7 @@ public class UserAdminInfraMapper {
         }
 
         return models.stream()
-                .map(model -> toEntity(model, tenantEntity)) // Reutilizamos el mapeo individual
+                .map(model -> toEntity(model)) // Reutilizamos el mapeo individual
                 .collect(Collectors.toList());
     }
 }

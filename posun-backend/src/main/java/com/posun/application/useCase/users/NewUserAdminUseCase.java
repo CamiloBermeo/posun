@@ -24,7 +24,7 @@ public class NewUserAdminUseCase {
         String encodePassword = passwordEncoder.encode(dto.password());
         Tenant tenant = findTenantByIdUseCase.execute(tenantId);
         UserAdmin admin = UserAdminAppMapper.toModel(dto, encodePassword);
-        return UserAdminAppMapper.toDto( repository.save(admin, tenant));
+        return UserAdminAppMapper.toDto( repository.save(admin, tenant.getTenantId()));
 
     }
 
