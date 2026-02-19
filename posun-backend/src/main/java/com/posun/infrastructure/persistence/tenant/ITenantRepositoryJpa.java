@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface ITenantRepositoryJpa extends JpaRepository<TenantEntity,Long> {
     @EntityGraph(attributePaths = {"userAdmins"}) // Fuerza la carga de la lista en una sola consulta
     Optional<TenantEntity> findById(Long id);
+    Optional<TenantEntity> findTenantByName(String businessName);
 }

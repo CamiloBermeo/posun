@@ -8,5 +8,6 @@ public interface ITenantRepository {
 
     Tenant createTenant(Tenant tenant);
     Optional<Tenant> findById(Long id);
+    Optional<Tenant> findByName(String businessName);
 
 }

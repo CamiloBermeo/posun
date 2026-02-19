@@ -18,13 +18,15 @@ import java.util.List;
 public class CreateTenantUseCase {
     private final ITenantRepository repository;
     private final PasswordEncoder passwordEncoder;
+    private final FindTenantByNameUseCase findTenantByNameUseCase;
 
 
-    public CreateTenantResponseDTO createTenant(CreateTenantRequestDTO createTenantRequestDTO) {
-        String encodePassword = passwordEncoder.encode(createTenantRequestDTO.userAdminRequestDTO().password());
-
-        UserAdmin userAdmin = UserAdminAppMapper.toModel(createTenantRequestDTO.userAdminRequestDTO(), encodePassword);
-        Tenant tenant = TenantAppMapper.toModel(createTenantRequestDTO, userAdmin);
+    public CreateTenantResponseDTO createTenant(CreateTenantRequestDTO dto) {
+        String encodePassword = passwordEncoder.encode(dto.userAdminRequestDTO().password());
+        UserAdmin userAdmin = UserAdminAppMapper.toModel(dto.userAdminRequestDTO(), encodePassword);
+        Tenant tenant = TenantAppMapper.toModel(dto, userAdmin);
+        //verificar que el tenant no exista
+        Tenant tenantDb = findTenantByNameUseCase.execute(tenant.getBusinessName().getValue());
         Tenant tenantRepository = repository.createTenant(tenant);
 
         return TenantAppMapper.toDTO(tenantRepository);

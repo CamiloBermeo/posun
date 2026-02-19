@@ -33,6 +33,13 @@ public class TenantRepositoryJpaAdapter implements ITenantRepository {
 
     @Override
     public Optional<Tenant> findById(Long id) {
-        return jpa.findById(id).map(TenantInfraMapper::toDomain);
+        return jpa.findById(id)
+                .map(TenantInfraMapper::toDomain);
+    }
+
+    @Override
+    public Optional<Tenant> findByName(String businessName) {
+        return jpa.findTenantByName(businessName)
+                .map(TenantInfraMapper::toDomain);
     }
 }
