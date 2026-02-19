@@ -8,6 +8,7 @@ import com.posun.infrastructure.mapper.TenantInfraMapper;
 import com.posun.infrastructure.mapper.UserAdminInfraMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,8 +39,8 @@ public class TenantRepositoryJpaAdapter implements ITenantRepository {
     }
 
     @Override
-    public Optional<Tenant> findByName(String businessName) {
-        return jpa.findTenantByName(businessName)
+    public Optional<Tenant> findTenantByBusinessName(String businessName) {
+        return jpa.findTenantByBusinessName(businessName)
                 .map(TenantInfraMapper::toDomain);
     }
 }

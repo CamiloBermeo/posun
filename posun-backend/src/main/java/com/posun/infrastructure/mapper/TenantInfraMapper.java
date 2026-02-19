@@ -32,11 +32,14 @@ public class TenantInfraMapper {
                 .withAssignedURL(new AssignedURLVO(tenantEntity.getAssignedURL()))
                 .withCreatedAt(tenantEntity.getCreatedAt())
                 .withStatus(new StatusVO(tenantEntity.isStatus()))
+                .withUserAdmin(tenantEntity.getUserAdmins().stream()
+                        .map(UserAdminInfraMapper::toModel)
+                        .toList())
                 .build().toBuilder();
 
         // 2. Ahora que 'tenant' existe, mapeamos los hijos pasándole esa referencia
         List<UserAdmin> userAdmins = tenantEntity.getUserAdmins().stream()
-                .map(entity -> UserAdminInfraMapper.toModel(entity, tenantBuilder.build())) // Pasamos el tenant que creamos arriba
+                .map(UserAdminInfraMapper::toModel) // Pasamos el tenant que creamos arriba
                 .toList();
         return tenantBuilder.build();
     }

@@ -17,8 +17,6 @@ import java.util.List;
 public class TenantAppMapper {
 
     public static Tenant toModel(CreateTenantRequestDTO dto, UserAdmin userAdmin) {
-
-
         return Tenant.builder()
                 .withBusinessName(new BusinessNameVO(dto.businessName()))
                 .withAssignedURL(new AssignedURLVO(dto.businessName()))
@@ -31,19 +29,17 @@ public class TenantAppMapper {
 
     public static CreateTenantResponseDTO toDTO(Tenant tenant) {
         List<UserAdmin> admins = tenant.getUserAdmins();
-        UserAdmin primaryAdmin = (admins != null && !admins.isEmpty()) ? admins.getFirst() : null;
         return new CreateTenantResponseDTO(
                 tenant.getTenantId(),
                 tenant.getBusinessName().getValue(),
                 tenant.getAssignedURL().getValue(),
                 tenant.getStatus().getValue(),
                 tenant.getCreatedAt(),
-                primaryAdmin != null ? primaryAdmin.getUserId() : null,
-                primaryAdmin != null ? primaryAdmin.getEmail().getValue() : null,
-                primaryAdmin != null ? primaryAdmin.getUserPosition().name() : null
+                admins.getFirst().getUserId(),
+                admins.getFirst().getEmail().getValue(),
+                admins.getFirst().getUserPosition().toString()
         );
     }
-
 
     private static TenantConfig tenantConfigToModel(CreateTenantRequestDTO dto) {
         return TenantConfig.builder()

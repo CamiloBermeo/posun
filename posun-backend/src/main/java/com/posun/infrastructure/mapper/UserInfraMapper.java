@@ -30,10 +30,10 @@ public class UserInfraMapper {
             return null;
         }
         if (userModel instanceof UserAdmin userAdmin) {
-            return UserAdminInfraMapper.toEntity(userAdmin, entity);
+            return UserAdminInfraMapper.toEntity(userAdmin);
         }
         if (userModel instanceof UserClient client){
-            return UserClientInfraMapper.toEntity(client, entity);
+            return UserClientInfraMapper.toEntity(client);
         }
         throw new IllegalArgumentException("Tipo de usuario no soportado " + userModel.getClass().getName());
     }

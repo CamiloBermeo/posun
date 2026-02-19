@@ -19,17 +19,16 @@ import java.util.Optional;
 public class CreateTenantUseCase {
     private final ITenantRepository repository;
     private final PasswordEncoder passwordEncoder;
-    private final FindTenantByNameUseCase findTenantByNameUseCase;
+    private final FindTenantByBusinessNameUseCase findTenantByBusinessNameUseCase;
 
 
     public CreateTenantResponseDTO createTenant(CreateTenantRequestDTO dto) {
-        String encodePassword = passwordEncoder.encode(dto.userAdminRequestDTO().password());
         //verificar que el tenant no exista
-        Optional<Tenant> tenantDb = findTenantByNameUseCase.execute(dto.businessName());
-
+        Optional<Tenant> tenantDb = findTenantByBusinessNameUseCase.execute(dto.businessName());
         if (tenantDb.isPresent()) {
             throw new TenantIsPresentException(dto.businessName());
         }else {
+            String encodePassword = passwordEncoder.encode(dto.userAdminRequestDTO().password());
             UserAdmin userAdmin = UserAdminAppMapper.toModel(dto.userAdminRequestDTO(), encodePassword);
             Tenant tenant = TenantAppMapper.toModel(dto, userAdmin);
 
