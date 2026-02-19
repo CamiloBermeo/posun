@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.UserAdmin;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class PasswordVO {
@@ -7,7 +9,7 @@ public final class PasswordVO {
 
     public PasswordVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("la contraseña no puede estar vacia");
+            throw new InformationNotNullException("password");
         }
         this.value = value;
     }

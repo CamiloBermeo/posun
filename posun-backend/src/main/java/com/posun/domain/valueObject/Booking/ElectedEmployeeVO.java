@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.Booking;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class ElectedEmployeeVO {
@@ -7,7 +9,7 @@ public final class ElectedEmployeeVO {
 
     public ElectedEmployeeVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("el empleado elegido no puede estar vacio");
+            throw new InformationNotNullException("ElectedEmployee");
         }
         this.value = value;
     }

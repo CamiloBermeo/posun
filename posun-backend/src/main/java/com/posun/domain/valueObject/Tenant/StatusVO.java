@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.Tenant;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class StatusVO {
@@ -7,7 +9,7 @@ public final class StatusVO {
 
     public StatusVO(Boolean value) {
         if (value == null) {
-            throw new IllegalArgumentException("el estado no puede ser nulo");
+            throw new InformationNotNullException("Status");
         }
         this.value = value;
     }

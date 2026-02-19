@@ -1,5 +1,8 @@
 package com.posun.domain.valueObject.TenantConfig;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+import com.posun.application.exception.valueObject.InvalidCancellationHoursException;
+
 import java.util.Objects;
 
 public final class CancellationMaxHoursVO {
@@ -7,10 +10,10 @@ public final class CancellationMaxHoursVO {
 
     public CancellationMaxHoursVO(Integer value) {
         if (value == null) {
-            throw new IllegalArgumentException("las horas maximas de cancelacion no pueden ser nulas");
+            throw new InformationNotNullException("CancellationMaxHoursVO");
         }
         if (value < 0) {
-            throw new IllegalArgumentException("las horas maximas de cancelacion no pueden ser negativas");
+            throw new InvalidCancellationHoursException(value);
         }
         this.value = value;
     }

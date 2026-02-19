@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.ServiceType;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class DescriptionServiceVO {
@@ -7,7 +9,7 @@ public final class DescriptionServiceVO {
 
     public DescriptionServiceVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("la descripcion del servicio no puede estar vacia");
+            throw new InformationNotNullException("DescriptionService");
         }
         this.value = value;
     }

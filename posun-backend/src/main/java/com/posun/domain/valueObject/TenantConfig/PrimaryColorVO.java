@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.TenantConfig;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class PrimaryColorVO {
@@ -7,7 +9,7 @@ public final class PrimaryColorVO {
 
     public PrimaryColorVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("el color primario no puede estar vacio");
+            throw new InformationNotNullException("PrimaryColor");
         }
         this.value = value;
     }

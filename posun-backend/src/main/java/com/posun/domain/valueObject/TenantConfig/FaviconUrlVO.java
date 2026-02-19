@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.TenantConfig;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class FaviconUrlVO {
@@ -7,7 +9,7 @@ public final class FaviconUrlVO {
 
     public FaviconUrlVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("la URL del favicon no puede estar vacia");
+            throw new InformationNotNullException("FaviconUrl");
         }
         this.value = value;
     }

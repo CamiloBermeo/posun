@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.Tenant;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.text.Normalizer;
 import java.util.Objects;
 
@@ -8,12 +10,11 @@ public final class AssignedURLVO {
 
     public AssignedURLVO(String businessName) {
         if (businessName == null || businessName.trim().isEmpty()) {
-            throw new IllegalArgumentException("la URL asignada no puede estar vacia");
+            throw new InformationNotNullException("businessName");
         }
         this.value = assignedUrl(businessName);
     }
 
-    //fabrica el slug que despues se unira con la url
     public static String assignedUrl(String businessName) {
 
         return  Normalizer.normalize( businessName.toLowerCase() , Normalizer.Form.NFD)

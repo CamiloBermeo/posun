@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.Tenant;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class BusinessNameVO {
@@ -7,7 +9,7 @@ public final class BusinessNameVO {
 
     public BusinessNameVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("el nombre del negocio no puede estar vacio");
+            throw new InformationNotNullException("businessName");
         }
         this.value = value;
     }

@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.Employee;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class EmailVO {
@@ -7,7 +9,7 @@ public final class EmailVO {
 
     public EmailVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("el value no puede estar vacio");
+            throw new InformationNotNullException("Email");
         }
         this.value = value;
     }

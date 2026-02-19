@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.TenantConfig;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class WelcomeMessageVO {
@@ -7,7 +9,7 @@ public final class WelcomeMessageVO {
 
     public WelcomeMessageVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("el mensaje de bienvenida no puede estar vacio");
+            throw new InformationNotNullException("WelcomeMessage");
         }
         this.value = value;
     }

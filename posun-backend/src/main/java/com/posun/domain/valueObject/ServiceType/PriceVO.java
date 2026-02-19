@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.ServiceType;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class PriceVO {
@@ -7,7 +9,7 @@ public final class PriceVO {
 
     public PriceVO(Double value) {
         if (value == null) {
-            throw new IllegalArgumentException("el precio no puede ser nulo");
+            throw new InformationNotNullException("Price");
         }
         if (value < 0) {
             throw new IllegalArgumentException("el precio no puede ser negativo");

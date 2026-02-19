@@ -1,5 +1,7 @@
 package com.posun.domain.valueObject.ServiceType;
 
+import com.posun.application.exception.valueObject.InformationNotNullException;
+
 import java.util.Objects;
 
 public final class NameServiceVO {
@@ -7,7 +9,7 @@ public final class NameServiceVO {
 
     public NameServiceVO(String value) {
         if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("el nombre del servicio no puede estar vacio");
+            throw new InformationNotNullException("NameService");
         }
         this.value = value;
     }

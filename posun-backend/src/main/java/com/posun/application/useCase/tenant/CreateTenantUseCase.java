@@ -2,6 +2,7 @@ package com.posun.application.useCase.tenant;
 
 import com.posun.application.dto.tenant.CreateTenantRequestDTO;
 import com.posun.application.dto.tenant.CreateTenantResponseDTO;
+import com.posun.application.exception.tenant.TenantIsPresentException;
 import com.posun.application.mapper.TenantAppMapper;
 import com.posun.application.mapper.UserAdminAppMapper;
 import com.posun.domain.model.Tenant;
@@ -11,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,12 +24,20 @@ public class CreateTenantUseCase {
 
     public CreateTenantResponseDTO createTenant(CreateTenantRequestDTO dto) {
         String encodePassword = passwordEncoder.encode(dto.userAdminRequestDTO().password());
-        UserAdmin userAdmin = UserAdminAppMapper.toModel(dto.userAdminRequestDTO(), encodePassword);
-        Tenant tenant = TenantAppMapper.toModel(dto, userAdmin);
         //verificar que el tenant no exista
-        Tenant tenantDb = findTenantByNameUseCase.execute(tenant.getBusinessName().getValue());
-        Tenant tenantRepository = repository.createTenant(tenant);
+        Optional<Tenant> tenantDb = findTenantByNameUseCase.execute(dto.businessName());
 
-        return TenantAppMapper.toDTO(tenantRepository);
+        if (tenantDb.isPresent()) {
+            throw new TenantIsPresentException(dto.businessName());
+        }else {
+            UserAdmin userAdmin = UserAdminAppMapper.toModel(dto.userAdminRequestDTO(), encodePassword);
+            Tenant tenant = TenantAppMapper.toModel(dto, userAdmin);
+
+            Tenant tenantRepository = repository.createTenant(tenant);
+
+            return TenantAppMapper.toDTO(tenantRepository);
+        }
+
+
     }
 }
