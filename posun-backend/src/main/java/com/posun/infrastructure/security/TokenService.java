@@ -33,7 +33,7 @@ public class TokenService {
     }
 
     private Instant expirationDate(){
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.systemDefault().getRules().getOffset(LocalDateTime.now()));
+        return LocalDateTime.now().plusMinutes(5).toInstant(ZoneOffset.systemDefault().getRules().getOffset(LocalDateTime.now()));
     }
 
     //este metodo ayuda para verificar los token que ya estan en uso, para ver si son invalidos o exporados

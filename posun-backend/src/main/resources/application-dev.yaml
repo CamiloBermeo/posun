@@ -38,6 +38,9 @@ api:
       secret: ${JWT_SECRET:1234567890}
       expiration: 86400
 
+jwt:
+  refresh-expiration-ms: 7d
+
 logging:
   level:
     root: INFO
